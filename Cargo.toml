@@ -1,0 +1,16 @@
+[package]
+name = "cheat-sheet"
+version = "0.0.1"
+edition = "2021"
+description = "rust cheat sheet as book"
+authors = [ "alexzanderr <alexzander.dot.dev@gmail.com>" ]
+license = "MIT"
+# license-file = "LICENSE"
+homepage = "https://github.com/alexzanderr/rust-cheat-sheet"
+repository = "https://github.com/alexzanderr/rust-cheat-sheet"
+# documentation = "https://docs.rs/python-objects"
+readme = "README.md"
+# keywords = ["python", "objects", "python-objects"]
+
+exclude = ["book/*"]
+

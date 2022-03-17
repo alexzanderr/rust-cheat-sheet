@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Find From Starting Point - The Rust Cheat Sheet</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../strings/index.html"><strong aria-hidden="true">1.</strong> Strings</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../strings/find.html" class="active"><strong aria-hidden="true">1.1.</strong> Find From Starting Point</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Rust Cheat Sheet</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="find-text-in-string-from-a-starting-point"><a class="header" href="#find-text-in-string-from-a-starting-point">find text in string from a starting point</a></h1>
+<h2 id="tldr"><a class="header" href="#tldr"><code>TL;DR</code></a></h2>
+<p>the solution is:</p>
+<pre><code class="language-rust no_run ignore">let index: usize = string[start..]
+    .find(pattern)
+    .map(|index| index + start)
+    .unwrap();
+</code></pre>
+<p>to get a pattern's index from a string from a starting point</p>
+<h2 id="long-story"><a class="header" href="#long-story">Long Story</a></h2>
+<p>suppose you want to find 2 double quotes in a string
+but <code>string.find('&quot;')</code> will only get the first one</p>
+<p>in your mind you want to do this <code>string.find('&quot;', start=10)</code>, for example</p>
+<p>you want to search from a starting point</p>
+<p>well you <code>cant</code> do that in rust <code>(directly)</code>, we are not in python universe</p>
+<p>but there is <code>workaround</code></p>
+<pre><pre class="playground"><code class="language-rust">
+
+fn main() {
+    println!();
+    let text = String::from(&quot;hello first \&quot; and hello the second\&quot;&quot;);
+    println!(&quot;the text is: '{text}'&quot;);
+
+    let first_quote: usize = text.find('&quot;').unwrap(); // cuz its an option
+    println!(&quot;index of first quote (\&quot;): {}&quot;, first_quote);
+
+    // but how do i get the second quote ?
+    // apply find over slice
+                            // from second quote + 1 to the end
+    let second_quote: usize = text[first_quote + 1..]
+        .find('&quot;')
+        .map(|i| i + first_quote + 1)
+        .unwrap();
+    println!(&quot;index of second quote (\&quot;): {}&quot;, second_quote);
+
+    // what happened?
+    // here text[first_quote + 1..] you get a slice
+    // but that slice starts from index = 0 from its perspective
+    // but in your perspective ( the developer ) that slice is from the original text
+    // well it doesnt think exactly like you
+    // without map you are getting a slice ` and hello the second&quot;`
+    // which is of length of 21 characters
+    // but the index 21 inside our original string
+    // is just right here ` and hel|` &lt;- right after hel
+                                            // and find again just like before
+    println!(&quot;look, text from 0 to 21 (text[0..21]) is: '{}'&quot;, &amp;text[0..21]);
+
+    // but what if i want to extract the text between quotes ?
+    let text_between_quotes: &amp;str = &amp;text[first_quote + 1..second_quote];
+    println!(&quot;text between quotes: '{}'&quot;, text_between_quotes);
+    println!();
+}
+</code></pre></pre>
+<p>how about extracting the algorithm into a function ?</p>
+<pre><pre class="playground"><code class="language-rust">
+
+fn find_from&lt;'a&gt;(string_slice: &amp;str, to_find: &amp;str, start_index: usize) -&gt; usize {
+    string_slice[start_index..]
+        .find(to_find) // find the pattern
+        .map(|index| index + start_index) // add the start index to the found one
+        .unwrap()
+}
+
+fn main() {
+    let string_with_17_chars = String::from(&quot;me and me and you&quot;);
+    let index = find_from(&amp;string_with_17_chars, &quot;me&quot;, 0);
+    // index: 0, thats right its just at the beginning
+    println!(&quot;index: {index}&quot;);
+    println!(&quot;text from index: '{}'&quot;, &amp;string_with_17_chars[index..]);
+
+
+    let index = find_from(&amp;string_with_17_chars, &quot;me&quot;, 5); // from 5
+    println!(&quot;index: {index}&quot;);
+    // the second me its located on index 7
+    println!(&quot;text from index: '{}'&quot;, &amp;string_with_17_chars[index..]);
+
+    // the function its working
+
+}
+</code></pre></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../strings/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../strings/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
