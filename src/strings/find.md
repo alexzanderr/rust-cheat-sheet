@@ -27,6 +27,8 @@ but there is `workaround`
 
 {{#playground ../../examples/strings_find.rs}}
 
+this [`stackoverflow answer`](https://stackoverflow.com/a/66273404/12172291) explains everything
+
 
 how about extracting the algorithm into a function ?
 {{#playground ../../examples/strings_find_final.rs}}

@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="strings/index.html"><strong aria-hidden="true">1.</strong> Strings</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="strings/find.html"><strong aria-hidden="true">1.1.</strong> Find From Starting Point</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="strings/index.html"><strong aria-hidden="true">1.</strong> Strings</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="strings/find.html"><strong aria-hidden="true">1.1.</strong> Find From Starting Point</a></li></ol></li><li class="chapter-item expanded "><a href="cargo/index.html"><strong aria-hidden="true">2.</strong> Cargo</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cargo/test/index.html"><strong aria-hidden="true">2.1.</strong> Test</a></li><li class="chapter-item expanded "><a href="cargo/cargo-edit/index.html"><strong aria-hidden="true">2.2.</strong> cargo-edit</a></li></ol></li><li class="chapter-item expanded "><a href="external_crates/index.html"><strong aria-hidden="true">3.</strong> External Crates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="external_crates/clap/index.html"><strong aria-hidden="true">3.1.</strong> Clap</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="external_crates/clap/derive_api_pattern.html"><strong aria-hidden="true">3.1.1.</strong> Derive API Pattern</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="webdev/index.html"><strong aria-hidden="true">4.</strong> Web Dev</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="webdev/access_web_dom.html"><strong aria-hidden="true">4.1.</strong> Access Web DOM</a></li></ol></li><li class="chapter-item expanded "><a href="good_resources/index.html"><strong aria-hidden="true">5.</strong> Good Resources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="good_resources/are_we_web_yet/index.html"><strong aria-hidden="true">5.1.</strong> Are we web yet?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="good_resources/are_we_web_yet/web_assembly.html"><strong aria-hidden="true">5.1.1.</strong> Web Assembly</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -188,6 +188,7 @@ fn main() {
     println!();
 }
 </code></pre></pre>
+<p>this <a href="https://stackoverflow.com/a/66273404/12172291"><code>stackoverflow answer</code></a> explains everything</p>
 <p>how about extracting the algorithm into a function ?</p>
 <pre><pre class="playground"><code class="language-rust">
 
@@ -215,6 +216,46 @@ fn main() {
 
 }
 </code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="stuff-about-cargo"><a class="header" href="#stuff-about-cargo">stuff about cargo</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="test-only-the-private-modules-and-functions"><a class="header" href="#test-only-the-private-modules-and-functions">test only the private modules and functions</a></h1>
+<pre><code class="language-shell">cargo test -j 8 --lib -- --show-output
+</code></pre>
+<p><code>--lib</code> means test only the library tests, meaning that all library tests are private, because they are not integration tests.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cargo-edit"><a class="header" href="#cargo-edit">cargo-edit</a></h1>
+<h2 id="install-cargo-edit"><a class="header" href="#install-cargo-edit">install cargo-edit</a></h2>
+<pre><code class="language-shell">cargo install cargo-edit
+</code></pre>
+<p>this command will install the crate into the <code>$HOME/.cargo</code></p>
+<p>on linux is: <code>/home/username/.cargo</code></p>
+<p>the binaries from the crate, which are <code>add</code>, <code>rm</code>, etc.., are installed into the folder: <code>$HOME/.cargo/bin</code></p>
+<h2 id="cargo-add"><a class="header" href="#cargo-add">cargo add</a></h2>
+<h3 id="add-feature-from-command-line"><a class="header" href="#add-feature-from-command-line">add feature from command line</a></h3>
+<pre><code class="language-shell">if you want for example to add the feature `derive` from the crate `clap`, run this:
+cargo add clap --features derive
+</code></pre>
+<h3 id="what-if-cargo-add-gives-segmentation-fault"><a class="header" href="#what-if-cargo-add-gives-segmentation-fault">what if cargo add gives <code>segmentation fault</code></a></h3>
+<p>what to do?</p>
+<pre><code class="language-shell">git clone https://github.com/killercup/cargo-edit
+cd cargo-edit
+cargo install --path .
+</code></pre>
+<p>this will install globally cargo-edit from this current folder from where you cloned the repo</p>
+<p>cause: the package has a bug on <code>crates.io</code>, its not updated yet, but on github master branch its merged and fixed</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="external-crates"><a class="header" href="#external-crates">External Crates</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="clap"><a class="header" href="#clap">Clap</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="derive-api-pattern"><a class="header" href="#derive-api-pattern">Derive API Pattern</a></h1>
+<p><a href="https://github.com/clap-rs/clap/blob/v3.1.6/examples/tutorial_derive/README.md"><code>docs</code></a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="web-dev"><a class="header" href="#web-dev">Web Dev</a></h1>
+<h2 id="deploy-web-assembly-application-to-production"><a class="header" href="#deploy-web-assembly-application-to-production">Deploy Web Assembly Application to Production</a></h2>
+<p><a href="https://rustwasm.github.io/book/reference/deploying-to-production.html"><code>docs</code></a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="access-web-dom"><a class="header" href="#access-web-dom">Access Web DOM</a></h1>
+<p><a href="https://github.com/web-dom/web-dom"><code>web-dom</code></a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="good-resources"><a class="header" href="#good-resources">Good Resources</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="are-we-web-yet"><a class="header" href="#are-we-web-yet">Are we web yet?</a></h1>
+<p><a href="https://www.arewewebyet.org/"><code>website</code></a></p>
+<p>here you can find a lot of interesting resources about rust and web.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="web-assembly"><a class="header" href="#web-assembly">Web Assembly</a></h1>
+<p><a href="https://www.arewewebyet.org/topics/webassembly/"><code>topics with web assembly</code></a></p>
 
                     </main>
 
@@ -230,6 +271,20 @@ fn main() {
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
