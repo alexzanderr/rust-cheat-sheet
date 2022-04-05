@@ -19,3 +19,6 @@
 - [Good Resources](./good_resources/README.md)
     - [Are we web yet?](./good_resources/are_we_web_yet/README.md)
         - [Web Assembly](./good_resources/are_we_web_yet/web_assembly.md)
+
+- [Firehose of Rust](./firehose_of_rust/README.md)
+- [References](./references.md)

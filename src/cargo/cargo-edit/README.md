@@ -16,12 +16,12 @@ the binaries from the crate, which are `add`, `rm`, etc.., are installed into th
 
 ### add feature from command line
 
-```shell
 if you want for example to add the feature `derive` from the crate `clap`, run this:
+```shell
 cargo add clap --features derive
 ```
 
-### what if cargo add gives `segmentation fault`
+### what if `cargo add` gives `segmentation fault` ?
 
 what to do?
 
